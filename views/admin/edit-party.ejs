@@ -2,8 +2,8 @@
 
 <div class="admin-container">
 	<div class="admin-header">
-		<h2>Dashboard</h2>
-		<span>Bienvenido, Admin</span>
+		<h2>Editar Fiesta</h2>
+		<a href="/admin/dashboard" class="btn btn-secondary">Volver al Dashboard</a>
 	</div>
 
 	<div
@@ -12,17 +12,23 @@
 			padding: 2rem;
 			border-radius: 8px;
 			border: 1px solid #333;
-			margin-bottom: 3rem;
 		"
 	>
-		<h3 style="margin-bottom: 1.5rem; color: var(--accent-primary)">
-			Crear Nueva Fiesta
-		</h3>
-		<form action="/admin/create" method="POST" enctype="multipart/form-data">
+		<form
+			action="/admin/update/<%= party.id %>"
+			method="POST"
+			enctype="multipart/form-data"
+		>
 			<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem">
 				<div class="form-group">
 					<label>Titulo del Evento</label>
-					<input type="text" name="title" class="form-control" required />
+					<input
+						type="text"
+						name="title"
+						class="form-control"
+						value="<%= party.title %>"
+						required
+					/>
 				</div>
 				<div class="form-group">
 					<label>Texto de Fecha (Para Mostrar)</label>
@@ -30,7 +36,7 @@
 						type="text"
 						name="dateDisplay"
 						class="form-control"
-						placeholder="Ej: Sabado 14 Oct - 23:00hs"
+						value="<%= party.date %>"
 						required
 					/>
 				</div>
@@ -43,7 +49,7 @@
 						type="datetime-local"
 						name="startDateTime"
 						class="form-control"
-						required
+						value="<%= party.startDateTime || '' %>"
 					/>
 				</div>
 				<div class="form-group">
@@ -52,7 +58,7 @@
 						type="datetime-local"
 						name="endDateTime"
 						class="form-control"
-						required
+						value="<%= party.endDateTime || '' %>"
 					/>
 				</div>
 			</div>
@@ -63,12 +69,24 @@
 					type="text"
 					name="location"
 					class="form-control"
-					placeholder="Ej: Club Koi, Mendoza"
+					value="<%= party.location || '' %>"
 				/>
 			</div>
 
 			<div class="form-group">
 				<label>Flyer / Imagen</label>
+				<% if (party.image) { %>
+				<div style="margin-bottom: 1rem">
+					<img
+						src="<%= party.image %>"
+						alt="Current flyer"
+						style="max-width: 200px; border-radius: 4px; border: 1px solid #333"
+					/>
+					<p style="color: #888; font-size: 0.9rem; margin-top: 0.5rem">
+						Imagen actual - Deja los campos vacios para mantenerla
+					</p>
+				</div>
+				<% } %>
 				<div
 					style="
 						display: flex;
@@ -116,27 +134,26 @@
 
 			<div class="form-group">
 				<label>Descripcion</label>
-				<textarea
-					name="description"
-					class="form-control"
-					rows="4"
-					required
-				></textarea>
+				<textarea name="description" class="form-control" rows="4" required>
+<%= party.description %></textarea
+				>
 			</div>
 
 			<div class="form-group">
 				<label>Line Up (Participantes)</label>
-				<textarea
-					name="lineup"
-					class="form-control"
-					rows="3"
-					placeholder="DJ 1, DJ 2..."
-				></textarea>
+				<textarea name="lineup" class="form-control" rows="3">
+<%= party.lineup || '' %></textarea
+				>
 			</div>
 
 			<div class="form-group">
 				<label>Sponsors</label>
-				<input type="text" name="sponsors" class="form-control" />
+				<input
+					type="text"
+					name="sponsors"
+					class="form-control"
+					value="<%= party.sponsors || '' %>"
+				/>
 			</div>
 
 			<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem">
@@ -146,7 +163,7 @@
 						type="text"
 						name="ticketLink"
 						class="form-control"
-						placeholder="https://..."
+						value="<%= party.ticketLink || '' %>"
 					/>
 				</div>
 				<div class="form-group">
@@ -155,63 +172,16 @@
 						type="text"
 						name="video"
 						class="form-control"
-						placeholder='<iframe src="..."></iframe>'
+						value="<%= party.video || '' %>"
 					/>
 				</div>
 			</div>
 
-			<button type="submit" class="btn">Publicar Fiesta</button>
+			<div style="display: flex; gap: 1rem; margin-top: 2rem">
+				<button type="submit" class="btn">Actualizar Fiesta</button>
+				<a href="/admin/dashboard" class="btn btn-secondary">Cancelar</a>
+			</div>
 		</form>
-	</div>
-
-	<h3 style="margin-bottom: 1rem">Fiestas Activas</h3>
-	<div style="overflow-x: auto">
-		<table class="admin-table">
-			<thead>
-				<tr>
-					<th>Fecha</th>
-					<th>Titulo</th>
-					<th>Acciones</th>
-				</tr>
-			</thead>
-			<tbody>
-				<% if (parties.length > 0) { %> <% parties.forEach(party => { %>
-				<tr>
-					<td><%= party.date %></td>
-					<td><%= party.title %></td>
-					<td class="actions">
-						<a
-							href="/admin/edit/<%= party.id %>"
-							class="btn"
-							style="padding: 0.5rem 1rem; font-size: 0.8rem; margin: 0"
-						>
-							<i class="fas fa-edit"></i> Editar
-						</a>
-						<form
-							action="/admin/delete/<%= party.id %>"
-							method="POST"
-							onsubmit="return confirm('Estas seguro de eliminar este evento?');"
-							style="display: inline"
-						>
-							<button
-								type="submit"
-								class="btn btn-danger"
-								style="padding: 0.5rem 1rem; font-size: 0.8rem; margin: 0"
-							>
-								<i class="fas fa-trash"></i> Eliminar
-							</button>
-						</form>
-					</td>
-				</tr>
-				<% }) %> <% } else { %>
-				<tr>
-					<td colspan="3" style="text-align: center; color: #555">
-						No hay fiestas cargadas.
-					</td>
-				</tr>
-				<% } %>
-			</tbody>
-		</table>
 	</div>
 </div>
 

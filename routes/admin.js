@@ -50,7 +50,7 @@ router.get("/login", (req, res) => {
 router.post("/login", (req, res) => {
 	const { username, password } = req.body;
 	// Hardcoded credentials for simplicity as requested
-	if (username === "admin" && password === "techno2024") {
+	if (username === "admin" && password === "admin123") {
 		req.session.isAdmin = true;
 		res.redirect("/admin/dashboard");
 	} else {
@@ -67,18 +67,73 @@ router.get("/dashboard", isAdmin, (req, res) => {
 // Create Party
 router.post("/create", isAdmin, upload.single("image"), (req, res) => {
 	const parties = getParties();
+
+	// Determine image source: uploaded file or URL
+	let imageSource = "";
+	if (req.file) {
+		imageSource = "/uploads/" + req.file.filename;
+	} else if (req.body.imageUrl && req.body.imageUrl.trim() !== "") {
+		imageSource = req.body.imageUrl.trim();
+	}
+
 	const newParty = {
 		id: uuidv4(),
 		title: req.body.title,
-		date: req.body.date,
+		date: req.body.dateDisplay, // Display text
+		startDateTime: req.body.startDateTime, // ISO datetime
+		endDateTime: req.body.endDateTime, // ISO datetime
+		location: req.body.location || "",
 		description: req.body.description,
-		image: req.file ? "/uploads/" + req.file.filename : "",
+		image: imageSource,
 		lineup: req.body.lineup,
 		ticketLink: req.body.ticketLink,
 		sponsors: req.body.sponsors,
 		video: req.body.video, // Embed link
 	};
 	parties.push(newParty);
+	saveParties(parties);
+	res.redirect("/admin/dashboard");
+});
+
+// Edit Party - GET
+router.get("/edit/:id", isAdmin, (req, res) => {
+	const parties = getParties();
+	const party = parties.find((p) => p.id === req.params.id);
+	if (!party) return res.status(404).send("Party not found");
+	res.render("admin/edit-party", { party });
+});
+
+// Update Party - POST
+router.post("/update/:id", isAdmin, upload.single("image"), (req, res) => {
+	let parties = getParties();
+	const partyIndex = parties.findIndex((p) => p.id === req.params.id);
+
+	if (partyIndex === -1) return res.status(404).send("Party not found");
+
+	// Determine image source: keep existing, upload new file, or use URL
+	let imageSource = parties[partyIndex].image; // Keep existing by default
+	if (req.file) {
+		imageSource = "/uploads/" + req.file.filename;
+	} else if (req.body.imageUrl && req.body.imageUrl.trim() !== "") {
+		imageSource = req.body.imageUrl.trim();
+	}
+
+	// Update party
+	parties[partyIndex] = {
+		id: req.params.id, // Keep the same ID
+		title: req.body.title,
+		date: req.body.dateDisplay,
+		startDateTime: req.body.startDateTime || parties[partyIndex].startDateTime,
+		endDateTime: req.body.endDateTime || parties[partyIndex].endDateTime,
+		location: req.body.location || "",
+		description: req.body.description,
+		image: imageSource,
+		lineup: req.body.lineup,
+		ticketLink: req.body.ticketLink,
+		sponsors: req.body.sponsors,
+		video: req.body.video,
+	};
+
 	saveParties(parties);
 	res.redirect("/admin/dashboard");
 });

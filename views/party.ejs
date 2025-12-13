@@ -29,7 +29,12 @@
 				<%= party.description %>
 			</p>
 
-			<% if (party.lineup) { %>
+			<% if (party.location) { %>
+			<div style="margin-bottom: 2rem">
+				<h3><i class="fas fa-map-marker-alt"></i> Ubicación</h3>
+				<p><%= party.location %></p>
+			</div>
+			<% } %> <% if (party.lineup) { %>
 			<div style="margin-bottom: 2rem">
 				<h3>Line Up</h3>
 				<p style="white-space: pre-line"><%= party.lineup %></p>
@@ -46,14 +51,34 @@
 				<a href="<%= party.ticketLink %>" target="_blank" class="btn"
 					>Comprar Tickets</a
 				>
+				<% } %> <% if (party.startDateTime && party.endDateTime) { %> <% const
+				startDate = new Date(party.startDateTime); const endDate = new
+				Date(party.endDateTime); const formatDate = (date) => { return
+				date.toISOString().replace(/-|:|\.\d+/g, ''); }; const calendarUrl =
+				`https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(party.title)}&dates=${formatDate(startDate)}/${formatDate(endDate)}&details=${encodeURIComponent(party.description)}&location=${encodeURIComponent(party.location
+				|| 'Mendoza, Argentina')}`; %>
+				<a
+					href="<%= calendarUrl %>"
+					target="_blank"
+					class="btn"
+					style="
+						border-color: var(--accent-secondary);
+						color: var(--accent-secondary);
+					"
+				>
+					<i class="far fa-calendar-plus"></i> Agregar al Calendario
+				</a>
 				<% } %>
+
 				<a href="/" class="btn btn-secondary">Volver</a>
 			</div>
 
 			<% if (party.video) { %>
 			<div style="margin-top: 3rem">
 				<h3>Video Promocional</h3>
-				<div style="margin-top: 1rem"><%- party.video %></div>
+				<div class="video-container" style="margin-top: 1rem">
+					<%- party.video %>
+				</div>
 			</div>
 			<% } %>
 		</div>

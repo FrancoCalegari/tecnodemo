@@ -1,13 +1,30 @@
 [
   {
-    "id": "01123f9f-edf5-4d71-a08d-ea0c107169df",
-    "title": "test",
-    "date": "sabado 25 de diciembre",
-    "description": "esto es una prueba",
-    "image": "/uploads/1765582637675.jpg",
-    "lineup": "Yanino",
-    "ticketLink": "",
-    "sponsors": "Mercado Pgo",
-    "video": "<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/XSgH2AB3sLA?si=XjKa1PPvTM_2T2t5\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen></iframe>"
+    "id": "62a402c6-0b7b-40d8-b076-d66f40b645de",
+    "title": "SVEN VÄTH MAURIZIO SCHMITZ RÊVERIE",
+    "date": "14/12",
+    "startDateTime": "2025-12-14T20:00",
+    "endDateTime": "2025-12-15T12:00",
+    "location": "",
+    "description": "El legendario líder de Cocoon y referente maximo del Techno, @svenvaeth_official 🇩🇪 , vuelve a Mendoza después de 3 años para presentarse este próximo 14 de diciembre de la mano de @clubkoi_",
+    "image": "https://www.cocoon.net/cdn/shop/files/Cocoon-at-Mar-Del-Plata-25-16x9.jpg?v=1760631475&width=800",
+    "lineup": "SVEN VÄTH",
+    "ticketLink": "https://mandalatickets.com/en/tulum/events/vagalume/cocoon-jan17",
+    "sponsors": "Clubkoi",
+    "video": "<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/cTWWPV0KRes?si=XG9VGvGBPRochGHI\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen></iframe>"
+  },
+  {
+    "id": "0644a899-8250-4cd3-93cd-d2c16e2a89d3",
+    "title": " FRANCO SMITH DEMON NOISE BERNI & MELMAN OPEN CALL",
+    "date": "19 de Diciembre 2025 - 20:00 hrs",
+    "startDateTime": "2025-12-19T20:00",
+    "endDateTime": "2025-12-20T06:00",
+    "location": "Rodriguez Peña 2815 Rodriguez Peña 2815 Mendoza, MENDOZA",
+    "description": "💥 Segunda entrega en esta temporada OUTDOOR para toda nuestra crew! Despedimos el año con este fechon, bailando \r\n\r\nViernes 19  de diciembre tendremos un line up de lujo en nuestro Hangar X, una hermosa ubicacion renovada y preparada para los festivales de verano. \r\n\r\nDEMON NOISE\r\n\r\nFRANCO SMITH\r\n\r\nBerni & Melman\r\n\r\n& more TBA\r\n\r\nStart: 20.00 - Close 06.00\r\n\r\nTICKETS EN VENTA",
+    "image": "https://cdn.beacons.ai/user_content/4q9oryprSrNtvEK0WYokcOXnHZF2/referenced_images/generated-images__link-in-bio__links-block__home__3567ba3c-df0b-48ef-aa98-0986d9d52557__903ec54e-a4dd-4c73-b9ee-0c3a2b4e9d12__7424fac8-cce9-4581-9acb-8555f0e5e3fb.webp?t=1763387067928&quot",
+    "lineup": "FRANCO SMITH DEMON NOISE BERNI MELMAN ",
+    "ticketLink": "https://www.passline.com/eventos/elevated-crew-10-hs-techno-2025-closing-party/techno-mdz-287345",
+    "sponsors": "DEMON NOISE  FRANCO SMITH  Berni & Melman  & more TBA",
+    "video": "<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/AFg5ELvfAfw?si=uXQGFq3HBKlYNmr0\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen></iframe>"
   }
 ]
