@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="theme-color" content="#b026ff" />
+		<meta
+			name="description"
+			content="Techno Mendoza - El portal de la cultura techno under en Mendoza, Argentina. Información sobre fiestas, eventos, DJs y sponsors."
+		/>
+		<meta
+			name="keywords"
+			content="Techno, Mendoza, Fiestas, Eventos, Música Electrónica, Underground, Argentina, DJ, Techno MDZ"
+		/>
+		<meta name="author" content="Techno Mendoza" />
+		<meta name="robots" content="index, follow" />
+
+		<!-- Open Graph / Facebook -->
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content="https://techno.mdz/" />
+		<meta
+			property="og:title"
+			content="Techno Mendoza - Fiestas & Eventos Underground"
+		/>
+		<meta
+			property="og:description"
+			content="El portal de la cultura techno under en Mendoza. Encuentra información sobre las mejores fiestas, line ups y compra de tickets."
+		/>
+		<meta property="og:image" content="/uploads/techno-mdz-og.jpg" />
+
+		<!-- Twitter -->
+		<meta property="twitter:card" content="summary_large_image" />
+		<meta property="twitter:url" content="https://techno.mdz/" />
+		<meta
+			property="twitter:title"
+			content="Techno Mendoza - Fiestas & Eventos Underground"
+		/>
+		<meta
+			property="twitter:description"
+			content="El portal de la cultura techno under en Mendoza. Encuentra información sobre las mejores fiestas, line ups y compra de tickets."
+		/>
+		<meta property="twitter:image" content="/uploads/techno-mdz-og.jpg" />
+
+		<title>Techno Mendoza - Fiestas Underground</title>
+
+		<!-- Google Fonts -->
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@300;500;700&display=swap"
+			rel="stylesheet"
+		/>
+
+		<link rel="stylesheet" href="/css/style.css" />
+		<% if (locals.admin) { %>
+		<link rel="stylesheet" href="/css/admin.css" />
+		<% } %>
+
+		<!-- Font Awesome for icons -->
+		<script
+			src="https://kit.fontawesome.com/274f77f0e3.js"
+			crossorigin="anonymous"
+		></script>
+	</head>
+	<body class="<%= locals.admin ? 'admin-body' : '' %>">
+		<header>
+			<nav>
+				<div class="logo">
+					<a href="/">TECHNO.MDZ</a>
+				</div>
+				<div class="nav-links">
+					<a href="/#parties">Fiestas</a>
+					<a href="/#contact">Contacto</a>
+					<% if (locals.admin) { %>
+					<a href="/admin/dashboard" style="color: var(--accent-secondary)"
+						>Admin Panel</a
+					>
+					<% } %>
+				</div>
+			</nav>
+		</header>
+	</body>
+</html>

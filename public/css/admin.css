@@ -1,0 +1,75 @@
+/* Inherit basic vars from style.css but add specific admin layout */
+body.admin-body {
+	background: #000;
+}
+
+.admin-container {
+	padding: 100px 5%;
+	max-width: 1000px;
+	margin: 0 auto;
+}
+
+.admin-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 2rem;
+	border-bottom: 1px solid #333;
+	padding-bottom: 1rem;
+}
+
+.form-group {
+	margin-bottom: 1.5rem;
+}
+
+.form-group label {
+	display: block;
+	margin-bottom: 0.5rem;
+	color: var(--accent-secondary);
+}
+
+.form-control {
+	width: 100%;
+	padding: 10px;
+	background: #111;
+	border: 1px solid #333;
+	color: #fff;
+	border-radius: 4px;
+}
+
+.form-control:focus {
+	outline: none;
+	border-color: var(--accent-primary);
+}
+
+.admin-table {
+	width: 100%;
+	border-collapse: collapse;
+	margin-top: 2rem;
+}
+
+.admin-table th,
+.admin-table td {
+	padding: 1rem;
+	text-align: left;
+	border-bottom: 1px solid #333;
+}
+
+.admin-table th {
+	color: var(--accent-secondary);
+}
+
+.actions {
+	display: flex;
+	gap: 10px;
+}
+
+.btn-danger {
+	border-color: #ff2626;
+	color: #ff2626;
+}
+
+.btn-danger:hover {
+	background: #ff2626;
+	box-shadow: 0 0 15px #ff2626;
+}

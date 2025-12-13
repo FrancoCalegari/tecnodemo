@@ -1,0 +1,13 @@
+[
+  {
+    "id": "01123f9f-edf5-4d71-a08d-ea0c107169df",
+    "title": "test",
+    "date": "sabado 25 de diciembre",
+    "description": "esto es una prueba",
+    "image": "/uploads/1765582637675.jpg",
+    "lineup": "Yanino",
+    "ticketLink": "",
+    "sponsors": "Mercado Pgo",
+    "video": "<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/XSgH2AB3sLA?si=XjKa1PPvTM_2T2t5\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen></iframe>"
+  }
+]

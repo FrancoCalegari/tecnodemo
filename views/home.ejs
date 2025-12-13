@@ -1,0 +1,64 @@
+<%- include('partials/header') %>
+
+<section class="hero">
+	<div>
+		<h1 class="glitch" data-text="TECHNO MENDOZA">TECHNO MENDOZA</h1>
+		<p>El portal de la cultura under en Mendoza.</p>
+		<a href="#parties" class="btn">Proximas Fiestas</a>
+	</div>
+</section>
+
+<section id="parties" class="container">
+	<h2 class="section-title">Proximos Eventos</h2>
+	<div class="party-grid">
+		<% if (parties.length > 0) { %> <% parties.forEach(party => { %>
+		<div class="party-card">
+			<% if (party.image) { %>
+			<img
+				src="<%= party.image %>"
+				alt="<%= party.title %>"
+				class="party-image"
+			/>
+			<% } else { %>
+			<div
+				class="party-image"
+				style="
+					background: #222;
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					color: #555;
+				"
+			>
+				No Image
+			</div>
+			<% } %>
+			<div class="party-info">
+				<span class="party-date"><%= party.date %></span>
+				<h3><%= party.title %></h3>
+				<p><%= party.description.substring(0, 100) %>...</p>
+				<a href="/party/<%= party.id %>" class="btn btn-secondary">Ver Info</a>
+			</div>
+		</div>
+		<% }) %> <% } else { %>
+		<p style="text-align: center; color: #777">
+			No hay fiestas programadas aun.
+		</p>
+		<% } %>
+	</div>
+</section>
+
+<section
+	id="about"
+	class="container"
+	style="text-align: center; max-width: 800px"
+>
+	<h2 class="section-title">Nosotros</h2>
+	<p>
+		Somos un colectivo dedicado a difundir la cultura techno en Mendoza.
+		Reunimos informacion sobre las mejores fiestas, DJs locales e
+		internacionales, y experiencias unicas.
+	</p>
+</section>
+
+<%- include('partials/footer') %>

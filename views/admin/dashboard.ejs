@@ -1,0 +1,137 @@
+<%- include('../partials/header', {admin: true}) %>
+
+<div class="admin-container">
+	<div class="admin-header">
+		<h2>Dashboard</h2>
+		<span>Bienvenido, Admin</span>
+	</div>
+
+	<div
+		style="
+			background: #111;
+			padding: 2rem;
+			border-radius: 8px;
+			border: 1px solid #333;
+			margin-bottom: 3rem;
+		"
+	>
+		<h3 style="margin-bottom: 1.5rem; color: var(--accent-primary)">
+			Crear Nueva Fiesta
+		</h3>
+		<form action="/admin/create" method="POST" enctype="multipart/form-data">
+			<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem">
+				<div class="form-group">
+					<label>Titulo del Evento</label>
+					<input type="text" name="title" class="form-control" required />
+				</div>
+				<div class="form-group">
+					<label>Fecha y Hora</label>
+					<input
+						type="text"
+						name="date"
+						class="form-control"
+						placeholder="Ej: Sabado 14 Oct - 23:00hs"
+						required
+					/>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label>Flyer / Imagen</label>
+				<input type="file" name="image" class="form-control" accept="image/*" />
+			</div>
+
+			<div class="form-group">
+				<label>Descripcion</label>
+				<textarea
+					name="description"
+					class="form-control"
+					rows="4"
+					required
+				></textarea>
+			</div>
+
+			<div class="form-group">
+				<label>Line Up (Participantes)</label>
+				<textarea
+					name="lineup"
+					class="form-control"
+					rows="3"
+					placeholder="DJ 1, DJ 2..."
+				></textarea>
+			</div>
+
+			<div class="form-group">
+				<label>Sponsors</label>
+				<input type="text" name="sponsors" class="form-control" />
+			</div>
+
+			<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem">
+				<div class="form-group">
+					<label>Link de Entradas (URL)</label>
+					<input
+						type="text"
+						name="ticketLink"
+						class="form-control"
+						placeholder="https://..."
+					/>
+				</div>
+				<div class="form-group">
+					<label>Video Embed (Iframe Code)</label>
+					<input
+						type="text"
+						name="video"
+						class="form-control"
+						placeholder='<iframe src="..."></iframe>'
+					/>
+				</div>
+			</div>
+
+			<button type="submit" class="btn">Publicar Fiesta</button>
+		</form>
+	</div>
+
+	<h3 style="margin-bottom: 1rem">Fiestas Activas</h3>
+	<div style="overflow-x: auto">
+		<table class="admin-table">
+			<thead>
+				<tr>
+					<th>Fecha</th>
+					<th>Titulo</th>
+					<th>Acciones</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% if (parties.length > 0) { %> <% parties.forEach(party => { %>
+				<tr>
+					<td><%= party.date %></td>
+					<td><%= party.title %></td>
+					<td class="actions">
+						<form
+							action="/admin/delete/<%= party.id %>"
+							method="POST"
+							onsubmit="return confirm('Estas seguro de eliminar este evento?');"
+						>
+							<button
+								type="submit"
+								class="btn btn-danger"
+								style="padding: 0.5rem 1rem; font-size: 0.8rem; margin: 0"
+							>
+								Eliminar
+							</button>
+						</form>
+					</td>
+				</tr>
+				<% }) %> <% } else { %>
+				<tr>
+					<td colspan="3" style="text-align: center; color: #555">
+						No hay fiestas cargadas.
+					</td>
+				</tr>
+				<% } %>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+<%- include('../partials/footer') %>
