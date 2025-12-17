@@ -3,7 +3,7 @@ const router = express.Router();
 const fs = require("fs");
 const path = require("path");
 const multer = require("multer");
-const { v4: uuidv4 } = require("uuid");
+const crypto = require("crypto");
 
 const partiesPath = path.join(__dirname, "../data/parties.json");
 
@@ -77,7 +77,7 @@ router.post("/create", isAdmin, upload.single("image"), (req, res) => {
 	}
 
 	const newParty = {
-		id: uuidv4(),
+		id: crypto.randomUUID(),
 		title: req.body.title,
 		date: req.body.dateDisplay, // Display text
 		startDateTime: req.body.startDateTime, // ISO datetime
